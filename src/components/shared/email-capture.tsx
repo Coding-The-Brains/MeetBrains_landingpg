@@ -10,17 +10,43 @@ export function EmailCapture({ id }: { id?: string }) {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [focused, setFocused] = useState(false);
+  const [error, setError] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email || loading) return;
 
     setLoading(true);
-    // TODO: Wire up Supabase/ConvertKit for email collection
-    console.log("Waitlist email:", email);
-    await new Promise((r) => setTimeout(r, 600));
-    setSubmitted(true);
-    setLoading(false);
+    setError("");
+
+    try {
+      const response = await fetch("/api/waitlist", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,
+          source: id ?? "waitlist-form",
+        }),
+      });
+
+      const payload = (await response.json().catch(() => null)) as
+        | { error?: string }
+        | null;
+
+      if (!response.ok) {
+        setError(payload?.error ?? "Something went wrong. Please try again.");
+        return;
+      }
+
+      setSubmitted(true);
+      setEmail("");
+    } catch {
+      setError("Unable to join right now. Please try again in a moment.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -58,7 +84,7 @@ export function EmailCapture({ id }: { id?: string }) {
         <motion.form
           key="form"
           onSubmit={handleSubmit}
-          className="relative flex flex-col sm:flex-row gap-3 w-full max-w-md"
+          className="relative w-full max-w-md"
           id={id}
         >
           {/* Glow ring behind input when focused */}
@@ -68,35 +94,42 @@ export function EmailCapture({ id }: { id?: string }) {
             transition={{ duration: 0.3 }}
           />
 
-          <div className="relative flex-1">
-            <input
-              type="email"
-              required
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              onFocus={() => setFocused(true)}
-              onBlur={() => setFocused(false)}
-              placeholder="Enter your work email"
-              className="w-full h-12 px-4 rounded-xl border border-border bg-card text-foreground placeholder:text-muted-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all duration-200"
-              aria-label="Work email address"
-            />
+          <div className="flex flex-col sm:flex-row gap-3 w-full">
+            <div className="relative flex-1">
+              <input
+                type="email"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                onFocus={() => setFocused(true)}
+                onBlur={() => setFocused(false)}
+                placeholder="Enter your work email"
+                className="w-full h-12 px-4 rounded-xl border border-border bg-card text-foreground placeholder:text-muted-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all duration-200"
+                aria-label="Work email address"
+              />
+            </div>
+            <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
+              <Button
+                type="submit"
+                disabled={loading}
+                className="h-12 px-6 rounded-xl cursor-pointer gap-2 text-sm font-semibold w-full sm:w-auto"
+              >
+                {loading ? (
+                  <Loader2 className="w-4 h-4 animate-spin" />
+                ) : (
+                  <>
+                    Join Waitlist
+                    <ArrowRight className="w-4 h-4" />
+                  </>
+                )}
+              </Button>
+            </motion.div>
           </div>
-          <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
-            <Button
-              type="submit"
-              disabled={loading}
-              className="h-12 px-6 rounded-xl cursor-pointer gap-2 text-sm font-semibold w-full sm:w-auto"
-            >
-              {loading ? (
-                <Loader2 className="w-4 h-4 animate-spin" />
-              ) : (
-                <>
-                  Join Waitlist
-                  <ArrowRight className="w-4 h-4" />
-                </>
-              )}
-            </Button>
-          </motion.div>
+          {error ? (
+            <p className="mt-2 text-sm text-destructive" role="alert">
+              {error}
+            </p>
+          ) : null}
         </motion.form>
       )}
     </AnimatePresence>

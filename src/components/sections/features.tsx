@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import { Bot, Mic, BookOpen, FileBarChart, SlidersHorizontal, Monitor, Sparkles } from "lucide-react";
-import { cn } from "@/lib/utils";
 
 const heroFeature = {
   icon: Bot,
