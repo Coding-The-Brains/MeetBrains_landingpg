@@ -1,8 +1,16 @@
+"use client";
+
+import { motion } from "framer-motion";
+
 export function Logo({ className }: { className?: string }) {
   return (
     <a href="#" className={`flex items-center gap-2.5 cursor-pointer group ${className ?? ""}`}>
-      <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-teal flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow duration-200">
-        {/* Bot/AI meeting icon */}
+      <motion.div
+        whileHover={{ scale: 1.08, rotate: 3 }}
+        whileTap={{ scale: 0.95 }}
+        transition={{ type: "spring", stiffness: 400, damping: 15 }}
+        className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-teal flex items-center justify-center shadow-sm group-hover:shadow-md"
+      >
         <svg
           width="18"
           height="18"
@@ -19,9 +27,9 @@ export function Logo({ className }: { className?: string }) {
           <path d="M7 21v-2" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
           <path d="M17 21v-2" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
         </svg>
-      </div>
+      </motion.div>
       <span className="text-lg font-bold tracking-tight text-foreground">
-        MeetAlly
+        MeetBrains
       </span>
     </a>
   );

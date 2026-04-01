@@ -8,6 +8,7 @@ const phrases = [
   "your sales calls",
   "your team syncs",
   "your client meetings",
+  "your strategy reviews",
 ];
 
 export function RotatingText() {
@@ -21,15 +22,15 @@ export function RotatingText() {
   }, []);
 
   return (
-    <span className="relative inline-flex overflow-hidden">
+    <span className="relative inline-flex overflow-hidden align-bottom">
       <AnimatePresence mode="wait">
         <motion.span
           key={phrases[index]}
-          initial={{ y: 24, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          exit={{ y: -24, opacity: 0 }}
-          transition={{ duration: 0.35, ease: "easeInOut" }}
-          className="inline-block text-primary"
+          initial={{ y: 30, opacity: 0, filter: "blur(4px)" }}
+          animate={{ y: 0, opacity: 1, filter: "blur(0px)" }}
+          exit={{ y: -30, opacity: 0, filter: "blur(4px)" }}
+          transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+          className="inline-block text-gradient animate-gradient-shift"
         >
           {phrases[index]}
         </motion.span>

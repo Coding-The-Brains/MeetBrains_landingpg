@@ -47,7 +47,7 @@
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
 
-  /* Custom MeetAlly tokens */
+  /* MeetBrains design tokens */
   --color-surface: var(--surface);
   --color-nav-bg: var(--nav-bg);
   --color-nav-border: var(--nav-border);
@@ -56,7 +56,7 @@
 }
 
 :root {
-  /* MeetAlly Light Theme — Clean, airy, premium SaaS */
+  /* MeetBrains Light Theme */
   --background: #FFFFFF;
   --foreground: #111827;
   --card: #FFFFFF;
@@ -82,7 +82,7 @@
   --chart-5: #EC4899;
   --radius: 0.75rem;
 
-  /* Custom MeetAlly tokens */
+  /* MeetBrains tokens */
   --surface: #F8F9FC;
   --nav-bg: rgba(255, 255, 255, 0.82);
   --nav-border: rgba(0, 0, 0, 0.06);
@@ -91,7 +91,7 @@
 }
 
 .dark {
-  /* MeetAlly Dark Theme — Deep navy, premium feel */
+  /* MeetBrains Dark Theme */
   --background: #0B0F1A;
   --foreground: #E8ECF4;
   --card: #131825;
@@ -116,7 +116,7 @@
   --chart-4: #60A5FA;
   --chart-5: #F472B6;
 
-  /* Custom MeetAlly tokens */
+  /* MeetBrains tokens */
   --surface: #101420;
   --nav-bg: rgba(11, 15, 26, 0.82);
   --nav-border: rgba(255, 255, 255, 0.06);
@@ -134,6 +134,191 @@
   html {
     @apply font-sans scroll-smooth;
   }
+}
+
+/* ─── Pro Animations ─── */
+
+@keyframes aurora {
+  0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); }
+  25% { transform: translate(30px, -50px) rotate(3deg) scale(1.05); }
+  50% { transform: translate(-20px, 20px) rotate(-2deg) scale(0.98); }
+  75% { transform: translate(40px, 10px) rotate(1deg) scale(1.02); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes glow-pulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.8; }
+}
+
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes draw-line {
+  0% { stroke-dashoffset: 1; }
+  100% { stroke-dashoffset: 0; }
+}
+
+@keyframes spin-slow {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.animate-aurora { animation: aurora 20s ease-in-out infinite; }
+.animate-float { animation: float 6s ease-in-out infinite; }
+.animate-shimmer { animation: shimmer 3s ease-in-out infinite; }
+.animate-marquee { animation: marquee 30s linear infinite; }
+.animate-glow-pulse { animation: glow-pulse 3s ease-in-out infinite; }
+.animate-gradient-shift { animation: gradient-shift 6s ease infinite; background-size: 200% 200%; }
+.animate-spin-slow { animation: spin-slow 12s linear infinite; }
+
+/* Noise texture overlay */
+.noise-overlay::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 1;
+}
+
+.dark .noise-overlay::after {
+  opacity: 0.06;
+}
+
+/* Gradient text utility */
+.text-gradient {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--teal) 50%, var(--primary) 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Glass card utility */
+.glass-card {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.dark .glass-card {
+  background: rgba(19, 24, 37, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* Glow effect on hover */
+.glow-hover {
+  position: relative;
+}
+.glow-hover::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, var(--primary), var(--teal), var(--primary));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+  filter: blur(8px);
+}
+.glow-hover:hover::before {
+  opacity: 0.4;
+}
+
+/* ─── Background Patterns ─── */
+
+/* Dot grid pattern — Linear/Vercel style */
+.dot-grid {
+  position: relative;
+}
+.dot-grid::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(0, 0, 0, 0.08) 1px, transparent 1px);
+  background-size: 22px 22px;
+  pointer-events: none;
+  z-index: 0;
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, black 20%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, black 20%, transparent 80%);
+}
+.dark .dot-grid::before {
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+}
+
+/* Section gradient divider — glowing line between sections */
+.section-glow-top {
+  position: relative;
+}
+.section-glow-top::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: 5%;
+  right: 5%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent 0%, var(--primary) 25%, var(--teal) 50%, var(--primary) 75%, transparent 100%);
+  opacity: 0.25;
+  pointer-events: none;
+  border-radius: 1px;
+  filter: blur(0.5px);
+}
+.dark .section-glow-top::before {
+  opacity: 0.35;
+}
+
+/* Beam effect — vertical center spine of light */
+.beam-effect {
+  position: relative;
+}
+.beam-effect::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(180deg, transparent 0%, var(--primary) 15%, var(--teal) 35%, var(--primary) 55%, transparent 70%, var(--primary) 85%, transparent 100%);
+  opacity: 0.04;
+  pointer-events: none;
+  filter: blur(1px);
+}
+.dark .beam-effect::after {
+  opacity: 0.08;
+  width: 3px;
+  filter: blur(1.5px);
+}
+
+/* Radial fade — soft vignette for sections */
+.radial-fade {
+  position: relative;
+}
+.radial-fade::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 50% at 50% 50%, transparent 40%, var(--background) 100%);
+  pointer-events: none;
+  z-index: 1;
 }
 
 @media (prefers-reduced-motion: reduce) {

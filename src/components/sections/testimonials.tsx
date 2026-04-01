@@ -1,133 +1,163 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Star, BadgeCheck } from "lucide-react";
-import { cn } from "@/lib/utils";
-import { AvatarPhoto } from "@/components/shared/avatar-photo";
+import { motion, useMotionValue, useTransform, animate } from "framer-motion";
+import { Sparkles, Shield, CreditCard, Mail, ArrowRight } from "lucide-react";
+import { EmailCapture } from "@/components/shared/email-capture";
+import { useEffect } from "react";
 
-const testimonials = [
-  {
-    quote:
-      "The first time MeetAlly spoke up in a meeting to remind us about a deadline we'd set two sprints ago - my entire team went silent. Game changer.",
-    name: "Alex Reynolds",
-    title: "VP Engineering",
-    company: "Series B Startup",
-    initials: "AR",
-    avatarSrc: "https://randomuser.me/api/portraits/men/76.jpg",
-    gradient: "from-blue-500 to-blue-600",
-  },
-  {
-    quote:
-      "We were paying for Otter AND a project manager to track action items. MeetAlly replaced both. The 3D avatar actually makes clients smile.",
-    name: "Maya Patel",
-    title: "Founder",
-    company: "Digital Agency",
-    initials: "MP",
-    avatarSrc: "https://randomuser.me/api/portraits/women/65.jpg",
-    gradient: "from-emerald-500 to-emerald-600",
-  },
-  {
-    quote:
-      "I asked MeetAlly mid-call 'what did marketing commit to last quarter?' and it pulled the exact answer from a meeting I wasn't even in. Insane.",
-    name: "Tom Chen",
-    title: "Head of Sales",
-    company: "Enterprise SaaS",
-    initials: "TC",
-    avatarSrc: "https://randomuser.me/api/portraits/men/51.jpg",
-    gradient: "from-orange-500 to-orange-600",
-  },
+function AnimatedCounter({ target }: { target: number }) {
+  const count = useMotionValue(0);
+  const rounded = useTransform(count, (v) => Math.floor(v));
+
+  useEffect(() => {
+    const controls = animate(count, target, {
+      duration: 2,
+      ease: "easeOut",
+    });
+    return controls.stop;
+  }, [count, target]);
+
+  return <motion.span>{rounded}</motion.span>;
+}
+
+const trustItems = [
+  { icon: Shield, label: "Free during beta" },
+  { icon: CreditCard, label: "No credit card required" },
+  { icon: Mail, label: "No spam, ever" },
 ];
-
-function Stars() {
-  return (
-    <div className="flex gap-0.5" aria-label="5 star rating">
-      {[...Array(5)].map((_, i) => (
-        <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
-      ))}
-    </div>
-  );
-}
-
-function QuoteMark() {
-  return (
-    <svg
-      className="w-8 h-8 text-primary/10 dark:text-primary/15 mb-1 -ml-1"
-      fill="currentColor"
-      viewBox="0 0 32 32"
-      aria-hidden="true"
-    >
-      <path d="M10 8C6.686 8 4 10.686 4 14v10h10V14H7.334C7.334 11.794 8.794 10 10 10V8zM22 8c-3.314 0-6 2.686-6 6v10h10V14h-6.666C19.334 11.794 20.794 10 22 10V8z" />
-    </svg>
-  );
-}
 
 export function Testimonials() {
   return (
-    <section id="testimonials" className="py-20 sm:py-28 bg-muted">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+    <section id="waitlist" className="py-24 sm:py-32 relative overflow-hidden dot-grid section-glow-top">
+      {/* Animated gradient border top */}
+      <motion.div
+        className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent"
+        initial={{ scaleX: 0 }}
+        whileInView={{ scaleX: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
+      />
+
+      {/* Aurora glow behind */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          className="w-[600px] h-[500px] bg-primary/[0.05] dark:bg-primary/[0.08] rounded-full blur-[120px]"
+          animate={{ scale: [1, 1.12, 1], opacity: [0.4, 0.7, 0.4] }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        />
+      </div>
+      <div className="absolute top-20 right-1/4 w-[300px] h-[300px] bg-teal/[0.04] dark:bg-teal/[0.06] rounded-full blur-[80px] pointer-events-none animate-aurora" />
+
+      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-12 sm:mb-16"
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className="flex flex-col items-center text-center"
         >
-          <span className="text-xs font-bold font-mono uppercase tracking-[0.2em] text-primary">
-            Testimonials
-          </span>
-          <h2 className="mt-3 text-3xl sm:text-4xl font-extrabold tracking-[-0.02em]">
-            What early users are saying
+          {/* Overline */}
+          <motion.span
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-[11px] font-semibold bg-primary/8 dark:bg-primary/12 text-primary border border-primary/20"
+          >
+            <Sparkles className="w-3 h-3" />
+            Limited beta spots
+          </motion.span>
+
+          {/* Headline */}
+          <h2 className="mt-5 text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-[-0.02em]">
+            Ready to send an AI agent
+            <br className="hidden sm:block" />{" "}
+            <span className="text-gradient animate-gradient-shift">to your next meeting?</span>
           </h2>
+          <p className="mt-4 text-base sm:text-lg text-muted-foreground max-w-lg leading-relaxed">
+            We&apos;re onboarding teams in small batches. Drop your email and
+            we&apos;ll reach out when it&apos;s your turn.
+          </p>
+
+          {/* Email capture */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2, duration: 0.5 }}
+            className="mt-8 w-full flex justify-center"
+          >
+            <EmailCapture id="waitlist-form" />
+          </motion.div>
+
+          {/* Animated waitlist counter */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.4 }}
+            className="mt-6 flex items-center gap-3"
+          >
+            {/* Stacked avatars */}
+            <div className="flex -space-x-2">
+              {["bg-blue-500", "bg-emerald-500", "bg-amber-500"].map((bg, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ scale: 0 }}
+                  whileInView={{ scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.5 + i * 0.05, type: "spring", stiffness: 300 }}
+                  className={`w-7 h-7 rounded-full ${bg} border-2 border-background flex items-center justify-center`}
+                >
+                  <span className="text-[8px] font-bold text-white">
+                    {["S", "J", "M"][i]}
+                  </span>
+                </motion.div>
+              ))}
+            </div>
+            <span className="text-sm text-muted-foreground">
+              <span className="font-semibold text-primary">
+                <AnimatedCounter target={143} />+
+              </span>{" "}
+              people on the waitlist
+            </span>
+          </motion.div>
+
+          {/* Trust signals */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.5, duration: 0.4 }}
+            className="mt-5 flex flex-wrap items-center justify-center gap-x-6 gap-y-2"
+          >
+            {trustItems.map(({ icon: Icon, label }, i) => (
+              <motion.span
+                key={label}
+                initial={{ opacity: 0, x: -8 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.5 + i * 0.08 }}
+                className="flex items-center gap-1.5 text-xs text-muted-foreground"
+              >
+                <Icon className="w-3.5 h-3.5 text-muted-foreground/60" />
+                {label}
+              </motion.span>
+            ))}
+          </motion.div>
+
+          {/* Launch date */}
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.6 }}
+            className="mt-6 text-[11px] text-muted-foreground/50 flex items-center gap-1.5"
+          >
+            <ArrowRight className="w-3 h-3" />
+            Launching Q3 2026
+          </motion.p>
         </motion.div>
-
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
-          {testimonials.map((t, i) => (
-            <motion.div
-              key={t.name}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.15 }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              className={cn(
-                "group rounded-2xl border border-border bg-card p-6 transition-all duration-200 cursor-pointer shadow-[0_1px_4px_rgba(0,0,0,0.04)] hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(0,0,0,0.07)] dark:hover:shadow-[0_8px_24px_rgba(0,0,0,0.25)] sm:p-7"
-              )}
-            >
-              <div className="flex items-start justify-between mb-1">
-                <Stars />
-                <BadgeCheck
-                  className="w-4 h-4 text-teal shrink-0 mt-0.5"
-                  aria-label="Verified review"
-                />
-              </div>
-
-              <QuoteMark />
-
-              <blockquote className="text-sm text-muted-foreground leading-[1.75]">
-                {t.quote}
-              </blockquote>
-
-              <div className="mt-5 pt-4 border-t border-border flex items-center gap-3">
-                <AvatarPhoto
-                  name={t.name}
-                  src={t.avatarSrc}
-                  fallback={t.initials}
-                  sizes="36px"
-                  className="w-9 h-9 shadow-sm ring-1 ring-black/5 dark:ring-white/10"
-                  fallbackClassName={`bg-gradient-to-br ${t.gradient}`}
-                  textClassName="text-white text-xs font-bold"
-                />
-                <div className="min-w-0">
-                  <p className="text-sm font-semibold text-foreground truncate">
-                    {t.name}
-                  </p>
-                  <p className="text-xs text-muted-foreground truncate">
-                    {t.title} {"\u00b7"} {t.company}
-                  </p>
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
       </div>
     </section>
   );

@@ -25,16 +25,16 @@ function resolveSiteUrl() {
     process.env.VERCEL_URL;
 
   if (!envUrl) {
-    return "https://meetally.ai";
+    return "https://meetbrains.ai";
   }
 
   return envUrl.startsWith("http") ? envUrl : `https://${envUrl}`;
 }
 
 const siteUrl = resolveSiteUrl();
-const siteTitle = "MeetAlly - The AI That Actually Shows Up to Your Meetings";
+const siteTitle = "MeetBrains - Your AI Agent That Actually Speaks in Meetings";
 const siteDescription =
-  "MeetAlly is an AI meeting agent with a 3D avatar that joins your calls, takes notes, answers questions in real-time, and generates action items. Works with Zoom, Google Meet, and Microsoft Teams.";
+  "MeetBrains sends a custom AI agent to your Zoom, Google Meet, or Teams calls. It greets participants, answers questions using your documents, and delivers a full report after.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -57,16 +57,16 @@ export const metadata: Metadata = {
   openGraph: {
     title: siteTitle,
     description:
-      "An active AI participant that joins your meetings with a 3D avatar, speaks in real-time, answers questions, and generates action items.",
+      "Send a custom AI agent to your Zoom, Google Meet, or Teams calls. It greets participants, answers questions using your documents, and delivers a full report after.",
     type: "website",
     url: "/",
-    siteName: "MeetAlly",
+    siteName: "MeetBrains",
   },
   twitter: {
     card: "summary_large_image",
     title: siteTitle,
     description:
-      "An active AI participant that joins your meetings with a 3D avatar, speaks in real-time, answers questions, and generates action items.",
+      "Send a custom AI agent to your Zoom, Google Meet, or Teams calls. It greets participants, answers questions using your documents, and delivers a full report after.",
   },
 };
 
