@@ -22,7 +22,7 @@ export function RotatingText() {
   }, []);
 
   return (
-    <span className="relative inline-flex overflow-hidden align-bottom">
+    <span className="relative inline-grid min-h-[1.2em] align-bottom leading-[1.15]">
       <AnimatePresence mode="wait">
         <motion.span
           key={phrases[index]}
@@ -30,7 +30,7 @@ export function RotatingText() {
           animate={{ y: 0, opacity: 1, filter: "blur(0px)" }}
           exit={{ y: -30, opacity: 0, filter: "blur(4px)" }}
           transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-          className="inline-block text-gradient animate-gradient-shift"
+          className="inline-block text-gradient animate-gradient-shift will-change-transform"
         >
           {phrases[index]}
         </motion.span>

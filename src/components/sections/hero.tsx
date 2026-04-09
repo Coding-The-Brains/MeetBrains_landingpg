@@ -92,7 +92,7 @@ export function Hero() {
   const simY = useTransform(scrollYProgress, [0, 1], [0, 40]);
 
   return (
-    <section ref={ref} className="relative pt-24 sm:pt-28 pb-16 lg:pb-24 overflow-hidden">
+    <section ref={ref} className="relative pt-24 sm:pt-28 pb-16 lg:pb-24 overflow-x-clip">
       {/* Aurora orbs with parallax */}
       <motion.div
         style={{ y: orbY1 }}
@@ -133,7 +133,7 @@ export function Hero() {
             {/* Headline */}
             <motion.h1
               variants={item}
-              className="mt-6 text-3xl sm:text-4xl lg:text-[2.85rem] xl:text-5xl font-extrabold tracking-[-0.03em] leading-[1.1]"
+              className="mt-6 text-3xl sm:text-4xl lg:text-[2.85rem] xl:text-5xl font-extrabold tracking-[-0.03em] leading-[1.14] sm:leading-[1.12]"
             >
               Your AI agent that
               <br className="hidden sm:block" />
@@ -148,8 +148,9 @@ export function Hero() {
                   <AudioLines className="w-5 h-5 sm:w-6 sm:h-6 text-primary/60" />
                 </motion.span>
               </span>
+              {" "}in
               <br />
-              in <RotatingText />
+              <RotatingText />
             </motion.h1>
 
             {/* Subheadline */}
