@@ -1,6 +1,6 @@
-# MeetAlly Landing Page
+# MeetBrains Landing Page
 
-Marketing site for MeetAlly, built with Next.js App Router, Tailwind CSS, and Framer Motion.
+Marketing site for MeetBrains, built with Next.js App Router, Tailwind CSS, and Framer Motion.
 
 ## Local development
 
@@ -18,20 +18,27 @@ npm run lint
 npm run build
 ```
 
-## Deploy to Vercel
+## Deploy
 
-1. Push this folder to a Git provider supported by Vercel.
-2. Import the repo in Vercel.
-3. Keep the detected framework preset as `Next.js`.
-4. Add environment variables:
-   `NEXT_PUBLIC_SITE_URL=https://your-domain.com` (optional)
-   `SUPABASE_URL=https://your-project-ref.supabase.co`
-   `SUPABASE_SERVICE_ROLE_KEY=your-supabase-service-role-key`
-5. In Supabase SQL Editor, run [supabase/waitlist.sql](./supabase/waitlist.sql).
-6. Deploy.
+The site runs as a Docker container on the MeetBrains EC2 box, behind nginx at
+`https://www.meetbrains.ai`. Vercel is no longer used.
+
+```bash
+docker build --build-arg NEXT_PUBLIC_SITE_URL=https://www.meetbrains.ai -t meetbrains-landing:latest .
+docker rm -f meetbrains-landing
+docker run -d --name meetbrains-landing --restart unless-stopped \
+  -p 127.0.0.1:3000:3000 \
+  -e MEETBRAINS_API_URL=https://app.meetbrains.ai \
+  meetbrains-landing:latest
+```
+
+`NEXT_PUBLIC_SITE_URL` is inlined at build time, so it is a build arg, not a runtime variable.
+`MEETBRAINS_API_URL` is read at runtime and defaults to `https://app.meetbrains.ai`.
 
 Notes:
 - The app already includes a production-safe `next build` script.
-- Metadata now falls back to Vercel preview/production URLs automatically if `NEXT_PUBLIC_SITE_URL` is not set.
+- `output: "standalone"` keeps the runtime image small enough for a 1.8GB box.
+- The waitlist form submits to `POST /api/waitlist`, a server-side proxy to the MeetBrains API.
+  Signups are stored in the product's own Postgres and are visible at
+  `https://app.meetbrains.ai/admin/marketing/waitlistsignup/`.
 - Remote avatar images are allowed from `randomuser.me` in `next.config.ts`.
-- The waitlist form submits to `POST /api/waitlist`, which inserts emails server-side into Supabase.
