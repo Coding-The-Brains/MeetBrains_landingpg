@@ -46,8 +46,16 @@ jobs:
           HOST: ${{ secrets.EC2_HOST }}
         run: |
           mkdir -p ~/.ssh
-          printf '%s\n' "$KEY" > ~/.ssh/deploy_key
+          # A key pasted from a Windows clipboard carries carriage returns, which OpenSSH rejects
+          # with the unhelpful "string is too large". Strip them rather than depend on how the
+          # secret was copied.
+          printf '%s\n' "$KEY" | tr -d '\r' > ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
+          # Fail here, with a clear reason, rather than 200MB into an image transfer.
+          if ! ssh-keygen -y -f ~/.ssh/deploy_key > /dev/null 2>&1; then
+            echo "::error::EC2_SSH_KEY is not a valid OpenSSH private key. Re-copy the whole file, including the BEGIN and END lines."
+            exit 1
+          fi
           ssh-keyscan -H "$HOST" >> ~/.ssh/known_hosts 2>/dev/null
 
       - name: Ship the image
