@@ -21,7 +21,11 @@ concurrency:
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    # The server is Graviton (aarch64). An x86 runner produces an image that cannot execute there —
+    # it starts and dies with "exec format error". This runner is native arm64, so the image matches
+    # the machine it will run on. GitHub provides it free on public repositories, and it avoids the
+    # ten-minute QEMU emulation a cross-build would cost.
+    runs-on: ubuntu-24.04-arm
     steps:
       - uses: actions/checkout@v4
 
