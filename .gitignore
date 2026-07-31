@@ -43,3 +43,6 @@ next-env.d.ts
 # Python bytecode caches (tooling artefacts, never source)
 __pycache__/
 *.pyc
+
+# Local agent tooling — not product source
+.claude/
