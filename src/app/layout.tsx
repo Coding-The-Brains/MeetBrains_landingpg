@@ -1,15 +1,10 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google";
+import { JetBrains_Mono } from "next/font/google";
+import "@fontsource-variable/geist";
 import { ThemeProvider } from "@/components/shared/theme-provider";
 import { cn } from "@/lib/utils";
 import "./globals.css";
 
-const plusJakarta = Plus_Jakarta_Sans({
-  variable: "--font-plus-jakarta",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
-  display: "swap",
-});
 
 const jetbrainsMono = JetBrains_Mono({
   variable: "--font-jetbrains",
@@ -78,7 +73,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={cn(plusJakarta.variable, jetbrainsMono.variable)}
+      className={cn(jetbrainsMono.variable)}
       suppressHydrationWarning
     >
       <body
