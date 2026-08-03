@@ -51,6 +51,22 @@ function MeetingTimer() {
   );
 }
 
+
+/** The Presence mark at participant-tile scale. Two shapes, no seam — the seam is a 2.4px stroke on
+ *  a 100-unit canvas, which disappears below about 20px anyway, so it is dropped rather than smeared. */
+function PresenceGlyph({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 100 100" fill="none" className={className} aria-hidden="true">
+      <path
+        d="M63.6 8.15A44 44 0 0 1 63.6 91.85L60.2 81.39A33 33 0 0 0 60.2 18.61Z"
+        fill="var(--mark-core)"
+        opacity=".38"
+      />
+      <path d="M50 6a44 44 0 0 0 0 88c9-16 9-72 0-88Z" fill="var(--mark-core)" />
+    </svg>
+  );
+}
+
 function ParticipantTile({
   name,
   role,
@@ -66,19 +82,36 @@ function ParticipantTile({
   colorClass: string;
   isAI?: boolean;
 }) {
+  // The agent shows its mark, the humans show their faces — which is precisely the situation the
+  // mark was drawn for: a small circular crop beside real photographs.
+  const avatar = isAI ? (
+    <span className="grid w-9 h-9 sm:w-12 sm:h-12 place-items-center rounded-full bg-primary/12 ring-1 ring-primary/25">
+      <PresenceGlyph className="w-5 h-5 sm:w-7 sm:h-7" />
+    </span>
+  ) : (
+    <AvatarPhoto
+      name={name}
+      src={avatarSrc}
+      fallback={initials}
+      sizes="48px"
+      className="w-9 h-9 sm:w-12 sm:h-12 shadow-sm ring-1 ring-black/5 dark:ring-white/10"
+      fallbackClassName={colorClass}
+      textClassName="text-white font-bold text-xs sm:text-sm"
+    />
+  );
   return (
     <motion.div
       whileHover={{ scale: 1.02 }}
       transition={{ type: "spring", stiffness: 300, damping: 20 }}
       className={`relative flex flex-col items-center justify-center rounded-xl p-3 sm:p-5 min-h-[110px] sm:min-h-[140px] transition-all duration-200 ${
         isAI
-          ? "bg-gradient-to-b from-primary/[0.08] to-primary/[0.03] dark:from-primary/15 dark:to-primary/5 border-2 border-primary/30 shadow-[0_0_0_1px_rgba(91,76,255,0.08)] dark:shadow-[0_0_12px_rgba(123,111,255,0.12)]"
+          ? "bg-gradient-to-b from-primary/[0.08] to-primary/[0.03] dark:from-primary/15 dark:to-primary/5 border-2 border-primary/30 shadow-[0_0_0_1px_hsl(var(--primary)/0.10)] dark:shadow-[0_0_16px_hsl(var(--primary)/0.14)]"
           : "bg-muted/60 border border-border"
       }`}
     >
       {isAI && (
         <>
-          <span className="absolute -top-2.5 left-1/2 -translate-x-1/2 px-2 py-0.5 text-[9px] font-bold font-mono uppercase tracking-wider bg-primary text-white rounded-full whitespace-nowrap shadow-sm">
+          <span className="absolute -top-2.5 left-1/2 -translate-x-1/2 px-2 py-0.5 text-[9px] font-bold font-mono uppercase tracking-wider bg-primary text-primary-foreground rounded-full whitespace-nowrap shadow-sm">
             AI Agent
           </span>
           {/* Pulse ring for active AI */}
@@ -90,15 +123,7 @@ function ParticipantTile({
         </>
       )}
 
-      <AvatarPhoto
-        name={name}
-        src={avatarSrc}
-        fallback={initials}
-        sizes="48px"
-        className="w-9 h-9 sm:w-12 sm:h-12 shadow-sm ring-1 ring-black/5 dark:ring-white/10"
-        fallbackClassName={colorClass}
-        textClassName="text-white font-bold text-xs sm:text-sm"
-      />
+      {avatar}
 
       <p className="mt-2 text-[10px] sm:text-xs font-semibold text-foreground text-center leading-tight">
         {name}

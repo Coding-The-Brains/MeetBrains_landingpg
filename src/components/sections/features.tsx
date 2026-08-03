@@ -18,32 +18,32 @@ const features = [
     title: "Real Voice Participation",
     description:
       "Your agent speaks in the meeting with sub-second latency. Greets participants, answers questions, and engages naturally.",
-    iconBg: "bg-amber-500/10 dark:bg-amber-500/15",
-    iconColor: "text-amber-500",
+    iconBg: "bg-muted",
+    iconColor: "text-muted-foreground",
   },
   {
     icon: BookOpen,
     title: "Knowledge-Powered",
     description:
       "Upload PDFs, docs, or URLs. Your agent uses them to answer questions accurately in live meetings via RAG.",
-    iconBg: "bg-emerald-500/10 dark:bg-emerald-500/15",
-    iconColor: "text-emerald-500",
+    iconBg: "bg-muted",
+    iconColor: "text-muted-foreground",
   },
   {
     icon: FileBarChart,
     title: "Instant Reports",
     description:
       "After every meeting: executive summary, action items, decisions made, and flagged concerns. Auto-generated.",
-    iconBg: "bg-pink-500/10 dark:bg-pink-500/15",
-    iconColor: "text-pink-500",
+    iconBg: "bg-muted",
+    iconColor: "text-muted-foreground",
   },
   {
     icon: SlidersHorizontal,
     title: "5 Participation Levels",
     description:
       "From silent observer to fully active participant. Dial in exactly how much your agent should engage.",
-    iconBg: "bg-blue-500/10 dark:bg-blue-500/15",
-    iconColor: "text-blue-500",
+    iconBg: "bg-muted",
+    iconColor: "text-muted-foreground",
   },
   {
     icon: Monitor,

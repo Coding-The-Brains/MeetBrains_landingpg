@@ -11,8 +11,8 @@ const steps = [
     description:
       "Build a custom agent with its own personality, voice, and knowledge base. Upload your docs so it comes prepared.",
     detail: "Takes 5 minutes",
-    iconBg: "bg-blue-500/10 dark:bg-blue-500/15",
-    iconColor: "text-blue-500",
+    iconBg: "bg-muted",
+    iconColor: "text-muted-foreground",
   },
   {
     icon: Bot,

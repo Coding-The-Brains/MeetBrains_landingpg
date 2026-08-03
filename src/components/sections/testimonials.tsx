@@ -100,7 +100,7 @@ export function Testimonials() {
           >
             {/* Stacked avatars */}
             <div className="flex -space-x-2">
-              {["bg-blue-500", "bg-emerald-500", "bg-amber-500"].map((bg, i) => (
+              {["bg-muted-foreground/70", "bg-muted-foreground/50", "bg-muted-foreground/30"].map((bg, i) => (
                 <motion.div
                   key={i}
                   initial={{ scale: 0 }}

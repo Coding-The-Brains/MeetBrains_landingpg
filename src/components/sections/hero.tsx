@@ -60,7 +60,7 @@ function WaitlistCounter() {
     >
       {/* Stacked avatars */}
       <div className="flex -space-x-2">
-        {["bg-blue-500", "bg-emerald-500", "bg-amber-500", "bg-pink-500"].map((bg, i) => (
+        {["bg-muted-foreground/70", "bg-muted-foreground/55", "bg-muted-foreground/40", "bg-muted-foreground/25"].map((bg, i) => (
           <motion.div
             key={i}
             initial={{ scale: 0 }}
@@ -68,7 +68,7 @@ function WaitlistCounter() {
             transition={{ delay: 1.3 + i * 0.05, type: "spring", stiffness: 300 }}
             className={`w-6 h-6 rounded-full ${bg} border-2 border-background flex items-center justify-center`}
           >
-            <span className="text-[8px] font-bold text-white">
+            <span className="text-[8px] font-bold text-background">
               {["S", "J", "M", "A"][i]}
             </span>
           </motion.div>
