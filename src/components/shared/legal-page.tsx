@@ -36,7 +36,7 @@ export function LegalPage({
 
       <hr className="my-14 border-border" />
       <p className="text-sm leading-relaxed text-muted-foreground">
-        Coding The Brains Ltd &middot; Questions about this document:{" "}
+        Coding The Brains LLC &middot; Questions about this document:{" "}
         <a
           href="mailto:hello@meetbrains.ai"
           className="text-foreground underline underline-offset-4 hover:no-underline"

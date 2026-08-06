@@ -16,7 +16,7 @@ export default function PrivacyPolicy() {
     >
       <Section title="Who we are">
         <p>
-          MeetBrains is operated by Coding The Brains Ltd (&ldquo;we&rdquo;). We are the data
+          MeetBrains is operated by Coding The Brains LLC (&ldquo;we&rdquo;). We are the data
           controller for the information described here. You can reach us at hello@meetbrains.ai.
         </p>
       </Section>

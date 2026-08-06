@@ -4,7 +4,7 @@ import { LegalPage, Section } from "@/components/shared/legal-page";
 export const metadata: Metadata = {
   title: "Terms of Service — MeetBrains",
   description:
-    "The agreement between you and Coding The Brains Ltd for using MeetBrains: what you may do, what we promise, and how billing works.",
+    "The agreement between you and Coding The Brains LLC for using MeetBrains: what you may do, what we promise, and how billing works.",
 };
 
 export default function TermsOfService() {
@@ -12,7 +12,7 @@ export default function TermsOfService() {
     <LegalPage
       title="Terms of Service"
       updated="6 August 2026"
-      intro="These terms are the agreement between you and Coding The Brains Ltd for using MeetBrains. Using the service means accepting them."
+      intro="These terms are the agreement between you and Coding The Brains LLC for using MeetBrains. Using the service means accepting them."
     >
       <Section title="What the service is">
         <p>
