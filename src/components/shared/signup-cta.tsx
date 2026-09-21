@@ -34,7 +34,7 @@ export function SignupCta({ id, align = "start" }: { id?: string; align?: "start
           className="h-12 px-7 rounded-xl cursor-pointer gap-2 text-sm font-semibold"
         >
           <a href={SIGNUP_URL}>
-            Get started free
+            Get started
             <ArrowRight className="w-4 h-4" />
           </a>
         </Button>

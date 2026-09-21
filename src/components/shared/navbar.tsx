@@ -227,7 +227,7 @@ export function Navbar() {
                 <Button asChild className="w-full h-11 rounded-xl cursor-pointer gap-2">
                   <a href={SIGNUP_URL} onClick={closeDrawer}>
                     <Sparkles className="w-4 h-4" />
-                    Get started free
+                    Get started
                   </a>
                 </Button>
                 <p className="text-[10px] text-center text-muted-foreground/60">
