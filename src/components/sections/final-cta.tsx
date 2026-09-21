@@ -52,7 +52,7 @@ export function FinalCTA() {
             transition={{ delay: 0.2, duration: 0.5 }}
             className="mt-8 w-full flex justify-center"
           >
-            <SignupCta id="final-cta-form" />
+            <SignupCta id="final-cta-form" align="center" />
           </motion.div>
 
           <motion.p

@@ -132,7 +132,7 @@ export function Hero() {
             </motion.p>
 
             {/* Sign-up */}
-            <motion.div variants={item} className="mt-7 w-full max-w-md max-lg:mx-auto">
+            <motion.div variants={item} className="mt-7 max-lg:mx-auto">
               <SignupCta />
             </motion.div>
 

@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Sparkles, Shield, CreditCard, Mail, ArrowRight } from "lucide-react";
+import { Sparkles, Shield, CreditCard, Mail } from "lucide-react";
 import { SignupCta } from "@/components/shared/signup-cta";
 
 const trustItems = [
@@ -63,7 +63,7 @@ export function Testimonials() {
             call. It takes about five minutes.
           </p>
 
-          {/* Email capture */}
+          {/* Sign-up */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -71,9 +71,8 @@ export function Testimonials() {
             transition={{ delay: 0.2, duration: 0.5 }}
             className="mt-8 w-full flex justify-center"
           >
-            <SignupCta id="get-started-form" />
+            <SignupCta id="get-started-form" align="center" />
           </motion.div>
-
 
           {/* Trust signals */}
           <motion.div
@@ -97,7 +96,6 @@ export function Testimonials() {
               </motion.span>
             ))}
           </motion.div>
-
         </motion.div>
       </div>
     </section>
