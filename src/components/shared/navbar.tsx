@@ -6,11 +6,12 @@ import { Menu, X, ArrowRight, Sparkles } from "lucide-react";
 import { Logo } from "./logo";
 import { ThemeToggle } from "./theme-toggle";
 import { Button } from "@/components/ui/button";
+import { SIGNUP_URL, LOGIN_URL } from "./signup-cta";
 
 const navLinks = [
   { label: "Features", href: "#features" },
   { label: "How It Works", href: "#how-it-works" },
-  { label: "Waitlist", href: "#waitlist" },
+  { label: "Sign in", href: LOGIN_URL },
 ];
 
 // Sidebar overlay + slide-in variants
@@ -130,8 +131,8 @@ export function Navbar() {
 
             <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }} className="hidden sm:block">
               <Button asChild className="h-9 rounded-full cursor-pointer px-5 gap-2">
-                <a href="#waitlist">
-                  Join Waitlist
+                <a href={SIGNUP_URL}>
+                  Get started
                   <ArrowRight className="w-3.5 h-3.5" />
                 </a>
               </Button>
@@ -224,9 +225,9 @@ export function Navbar() {
                 className="p-4 border-t border-border shrink-0 space-y-3"
               >
                 <Button asChild className="w-full h-11 rounded-xl cursor-pointer gap-2">
-                  <a href="#waitlist" onClick={closeDrawer}>
+                  <a href={SIGNUP_URL} onClick={closeDrawer}>
                     <Sparkles className="w-4 h-4" />
-                    Join the Waitlist
+                    Get started free
                   </a>
                 </Button>
                 <p className="text-[10px] text-center text-muted-foreground/60">

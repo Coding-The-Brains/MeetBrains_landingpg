@@ -7,7 +7,7 @@ const heroFeature = {
   icon: Bot,
   title: "Custom AI Agents",
   description:
-    "Build agents with unique personalities — set formality, humor, assertiveness. Choose from 8 voices and 4 LLM models. Each agent remembers your documents and adapts to your team's context.",
+    "Build agents with unique personalities: set formality, humor, assertiveness. Choose from 8 voices and 4 LLM models. Each agent remembers your documents and adapts to your team's context.",
   iconBg: "bg-primary/10 dark:bg-primary/15",
   iconColor: "text-primary",
 };
@@ -49,7 +49,7 @@ const features = [
     icon: Monitor,
     title: "Live Control Dashboard",
     description:
-      "Watch the live transcript, mute/unmute your agent, inject speech manually — full control while it\u2019s in the meeting.",
+      "Watch the live transcript, mute/unmute your agent, inject speech manually. Full control while it\u2019s in the meeting.",
     iconBg: "bg-cyan-500/10 dark:bg-cyan-500/15",
     iconColor: "text-cyan-500",
   },

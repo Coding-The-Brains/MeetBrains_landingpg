@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { LegalPage, Row, Section } from "@/components/shared/legal-page";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy — MeetBrains",
+  title: "Privacy Policy - MeetBrains",
   description:
     "What MeetBrains collects when your agent attends a meeting, who processes it, how long it is kept, and how to get it deleted.",
 };
@@ -124,7 +124,7 @@ export default function PrivacyPolicy() {
         <p>
           Traffic is encrypted in transit. Passwords are hashed. Access to production systems is
           limited to the people who operate the service. No system is perfectly secure, and we will
-          not claim otherwise — if we ever discover a breach affecting your data, we will tell you.
+          not claim otherwise. If we ever discover a breach affecting your data, we will tell you.
         </p>
       </Section>
 

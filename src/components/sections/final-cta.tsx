@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { EmailCapture } from "@/components/shared/email-capture";
+import { SignupCta } from "@/components/shared/signup-cta";
 
 export function FinalCTA() {
   return (
@@ -42,8 +42,7 @@ export function FinalCTA() {
             <span className="text-gradient animate-gradient-shift">to your next meeting?</span>
           </h2>
           <p className="mt-4 text-base sm:text-lg text-muted-foreground max-w-lg leading-relaxed">
-            Join the waitlist and be among the first to experience meetings with
-            an AI that actually speaks.
+            Create a free account and send your first agent to a meeting today.
           </p>
 
           <motion.div
@@ -53,7 +52,7 @@ export function FinalCTA() {
             transition={{ delay: 0.2, duration: 0.5 }}
             className="mt-8 w-full flex justify-center"
           >
-            <EmailCapture id="final-cta-form" />
+            <SignupCta id="final-cta-form" />
           </motion.div>
 
           <motion.p
@@ -63,8 +62,7 @@ export function FinalCTA() {
             transition={{ delay: 0.4 }}
             className="mt-6 text-xs text-muted-foreground/70"
           >
-            Launching Q3 2026 &middot; Free during beta &middot; No credit card
-            required
+            Free during beta &middot; No credit card required
           </motion.p>
         </motion.div>
       </div>

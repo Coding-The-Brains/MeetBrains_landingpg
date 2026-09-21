@@ -8,7 +8,7 @@ import { AvatarPhoto } from "./avatar-photo";
 const transcriptLines = [
   "Hi everyone, glad to join today\u2019s strategy review. I\u2019ve reviewed the uploaded docs and I\u2019m ready to help.",
   "Sarah, based on the product brief you uploaded, the timeline shows Phase 2 starting next month.",
-  "I can answer that \u2014 the Q1 metrics doc mentions a 23% increase in API response time.",
+  "I can answer that. The Q1 metrics doc mentions a 23% increase in API response time.",
   "James, I\u2019ve noted that as an action item. I\u2019ll include it in the post-meeting report.",
   "Summary ready: 3 decisions made, 4 action items, 1 blocker identified.",
 ];

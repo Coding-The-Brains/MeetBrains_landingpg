@@ -1,24 +1,8 @@
 "use client";
 
-import { motion, useMotionValue, useTransform, animate } from "framer-motion";
+import { motion } from "framer-motion";
 import { Sparkles, Shield, CreditCard, Mail, ArrowRight } from "lucide-react";
-import { EmailCapture } from "@/components/shared/email-capture";
-import { useEffect } from "react";
-
-function AnimatedCounter({ target }: { target: number }) {
-  const count = useMotionValue(0);
-  const rounded = useTransform(count, (v) => Math.floor(v));
-
-  useEffect(() => {
-    const controls = animate(count, target, {
-      duration: 2,
-      ease: "easeOut",
-    });
-    return controls.stop;
-  }, [count, target]);
-
-  return <motion.span>{rounded}</motion.span>;
-}
+import { SignupCta } from "@/components/shared/signup-cta";
 
 const trustItems = [
   { icon: Shield, label: "Free during beta" },
@@ -28,7 +12,7 @@ const trustItems = [
 
 export function Testimonials() {
   return (
-    <section id="waitlist" className="py-24 sm:py-32 relative overflow-hidden dot-grid section-glow-top">
+    <section id="get-started" className="py-24 sm:py-32 relative overflow-hidden dot-grid section-glow-top">
       {/* Animated gradient border top */}
       <motion.div
         className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent"
@@ -65,7 +49,7 @@ export function Testimonials() {
             className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-[11px] font-semibold bg-primary/8 dark:bg-primary/12 text-primary border border-primary/20"
           >
             <Sparkles className="w-3 h-3" />
-            Limited beta spots
+            Now live
           </motion.span>
 
           {/* Headline */}
@@ -75,8 +59,8 @@ export function Testimonials() {
             <span className="text-gradient animate-gradient-shift">to your next meeting?</span>
           </h2>
           <p className="mt-4 text-base sm:text-lg text-muted-foreground max-w-lg leading-relaxed">
-            We&apos;re onboarding teams in small batches. Drop your email and
-            we&apos;ll reach out when it&apos;s your turn.
+            Create your account, build an agent, and send it to your next
+            call. It takes about five minutes.
           </p>
 
           {/* Email capture */}
@@ -87,41 +71,9 @@ export function Testimonials() {
             transition={{ delay: 0.2, duration: 0.5 }}
             className="mt-8 w-full flex justify-center"
           >
-            <EmailCapture id="waitlist-form" />
+            <SignupCta id="get-started-form" />
           </motion.div>
 
-          {/* Animated waitlist counter */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.4 }}
-            className="mt-6 flex items-center gap-3"
-          >
-            {/* Stacked avatars */}
-            <div className="flex -space-x-2">
-              {["bg-muted-foreground/70", "bg-muted-foreground/50", "bg-muted-foreground/30"].map((bg, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ scale: 0 }}
-                  whileInView={{ scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.5 + i * 0.05, type: "spring", stiffness: 300 }}
-                  className={`w-7 h-7 rounded-full ${bg} border-2 border-background flex items-center justify-center`}
-                >
-                  <span className="text-[8px] font-bold text-white">
-                    {["S", "J", "M"][i]}
-                  </span>
-                </motion.div>
-              ))}
-            </div>
-            <span className="text-sm text-muted-foreground">
-              <span className="font-semibold text-primary">
-                <AnimatedCounter target={143} />+
-              </span>{" "}
-              people on the waitlist
-            </span>
-          </motion.div>
 
           {/* Trust signals */}
           <motion.div
@@ -146,17 +98,6 @@ export function Testimonials() {
             ))}
           </motion.div>
 
-          {/* Launch date */}
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.6 }}
-            className="mt-6 text-[11px] text-muted-foreground/50 flex items-center gap-1.5"
-          >
-            <ArrowRight className="w-3 h-3" />
-            Launching Q3 2026
-          </motion.p>
         </motion.div>
       </div>
     </section>

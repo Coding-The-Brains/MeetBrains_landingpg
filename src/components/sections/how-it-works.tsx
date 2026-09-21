@@ -29,7 +29,7 @@ const steps = [
     number: "03",
     title: "Get instant reports",
     description:
-      "After every meeting: executive summary, action items with assignees, decisions made, and flagged concerns — all auto-generated.",
+      "After every meeting: executive summary, action items with assignees, decisions made, and flagged concerns. All auto-generated.",
     detail: "Auto-generated",
     iconBg: "bg-teal/10 dark:bg-teal/15",
     iconColor: "text-teal",

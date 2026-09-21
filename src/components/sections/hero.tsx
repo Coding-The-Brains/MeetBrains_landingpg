@@ -2,7 +2,7 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Sparkles, AudioLines } from "lucide-react";
-import { EmailCapture } from "@/components/shared/email-capture";
+import { SignupCta } from "@/components/shared/signup-cta";
 import { RotatingText } from "@/components/shared/rotating-text";
 import { MeetingSimulation } from "@/components/shared/meeting-simulation";
 import { ZoomIcon, GoogleMeetIcon, MicrosoftTeamsIcon } from "@/components/shared/brand-icons";
@@ -47,37 +47,6 @@ function PlatformLogos() {
         </motion.div>
       ))}
     </div>
-  );
-}
-
-function WaitlistCounter() {
-  return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ delay: 1.2 }}
-      className="flex items-center gap-2 text-xs text-muted-foreground"
-    >
-      {/* Stacked avatars */}
-      <div className="flex -space-x-2">
-        {["bg-muted-foreground/70", "bg-muted-foreground/55", "bg-muted-foreground/40", "bg-muted-foreground/25"].map((bg, i) => (
-          <motion.div
-            key={i}
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ delay: 1.3 + i * 0.05, type: "spring", stiffness: 300 }}
-            className={`w-6 h-6 rounded-full ${bg} border-2 border-background flex items-center justify-center`}
-          >
-            <span className="text-[8px] font-bold text-background">
-              {["S", "J", "M", "A"][i]}
-            </span>
-          </motion.div>
-        ))}
-      </div>
-      <span>
-        <span className="font-semibold text-foreground">143+</span> people on the waitlist
-      </span>
-    </motion.div>
   );
 }
 
@@ -126,7 +95,7 @@ export function Hero() {
                 className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-[11px] font-semibold bg-primary/8 dark:bg-primary/12 text-primary border border-primary/20 cursor-default"
               >
                 <Sparkles className="w-3 h-3" />
-                Coming Q3 2026
+                Now live
               </motion.span>
             </motion.div>
 
@@ -162,14 +131,9 @@ export function Hero() {
               Teams. Get a full report after.
             </motion.p>
 
-            {/* Email capture */}
+            {/* Sign-up */}
             <motion.div variants={item} className="mt-7 w-full max-w-md max-lg:mx-auto">
-              <EmailCapture />
-            </motion.div>
-
-            {/* Waitlist counter */}
-            <motion.div variants={item} className="mt-4 max-lg:mx-auto">
-              <WaitlistCounter />
+              <SignupCta />
             </motion.div>
 
             {/* Platform logos */}

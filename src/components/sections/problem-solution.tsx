@@ -13,9 +13,9 @@ const problems = [
 
 const solutions = [
   { text: "AI agent that actually speaks", detail: "Answers questions and engages naturally" },
-  { text: "Knowledge-powered from your docs", detail: "Upload PDFs — agent uses them in meetings via RAG" },
+  { text: "Knowledge-powered from your docs", detail: "Upload PDFs. The agent uses them in meetings via RAG" },
   { text: "Auto-generated reports after every call", detail: "Action items, decisions, and flagged concerns" },
-  { text: "Custom personality & voice", detail: "Set participation level — feels like a real teammate" },
+  { text: "Custom personality & voice", detail: "Set participation level. Feels like a real teammate" },
 ];
 
 const cardItem = {

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { LegalPage, Section } from "@/components/shared/legal-page";
 
 export const metadata: Metadata = {
-  title: "Terms of Service — MeetBrains",
+  title: "Terms of Service - MeetBrains",
   description:
     "The agreement between you and Coding The Brains LLC for using MeetBrains: what you may do, what we promise, and how billing works.",
 };
@@ -83,7 +83,7 @@ export default function TermsOfService() {
         <p>
           If a meeting is charged but the agent never joins, the credit is returned automatically.
           Beyond that we do not generally give refunds, but if something goes wrong on our side,
-          write to us — we would rather sort it out than argue about it.
+          write to us. We would rather sort it out than argue about it.
         </p>
         <p>Prices may change. If they do, we will give you at least 30 days&rsquo; notice by email.</p>
       </Section>
@@ -96,7 +96,7 @@ export default function TermsOfService() {
           without checking it.
         </p>
         <p>
-          We depend on other services — the meeting platform, our AI providers, our hosting — and we
+          We depend on other services (the meeting platform, our AI providers, our hosting) and we
           cannot guarantee uninterrupted availability. The service is provided as is, without
           warranties beyond those the law requires and does not permit us to exclude.
         </p>
